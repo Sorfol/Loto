@@ -22,6 +22,10 @@ public class User {
         return money;
     }
 
+    public void setMoney(double money) {
+        this.money.set(money);
+    }
+
     public User(String name) {
         this.name = new SimpleStringProperty(name);
         this.money = new SimpleDoubleProperty(0);
