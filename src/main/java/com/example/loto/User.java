@@ -31,4 +31,7 @@ public class User {
         this.money = new SimpleDoubleProperty(0);
     }
 
+    public void setMoney(double money) {
+        this.money.set(money);
+    }
 }
