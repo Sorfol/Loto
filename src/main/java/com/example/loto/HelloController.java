@@ -11,11 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,9 +37,7 @@ public class HelloController {
     @FXML
     private CategoryAxis xAxis;
     @FXML
-    private Label welcomeText;
-    @FXML
-    private Label bbText;
+    private NumberAxis yAxis;
 
     private XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
@@ -54,11 +54,23 @@ public class HelloController {
 
         ///
 
-        // Преобразуем его в список и добавляем в наш ObservableList месяцев.
+        // Кусок с сайта https://betacode.net/11107/javafx-barchart
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Programming Language");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Percent");
+
+        BarChart<String, Number> barUsers = new BarChart<String, Number>(xAxis, yAxis);
+
+        barUsers.setTitle("Some Programming Languages");
+
+
         personNames.addAll(Arrays.asList(personData.getClass().getName()));
 
         // Назначаем имена месяцев категориями для горизонтальной оси.
         xAxis.setCategories(personNames);
+
 
 
     }
@@ -90,6 +102,8 @@ public class HelloController {
         }
 
         counter++;
+
+        onChangeDgr();
     }
 
     @FXML
@@ -97,19 +111,28 @@ public class HelloController {
 
         int selectedIndex = tableUsers.getSelectionModel().getSelectedIndex();
         User curUser = tableUsers.getItems().get(selectedIndex);
-        curUser.setMoney(curUser.getMoney().doubleValue()+ 300);
+        curUser.setMoney(curUser.getMoney().doubleValue() + 300);
+        onChangeDgr();
     }
 
+    @FXML
+    private void onPickUpMoney() {
+
+        int selectedIndex = tableUsers.getSelectionModel().getSelectedIndex();
+        User curUser = tableUsers.getItems().get(selectedIndex);
+        curUser.setMoney(curUser.getMoney().doubleValue() - 300);
+        onChangeDgr();
+    }
     @FXML
     private void onDelete() {
         int selectedIndex = tableUsers.getSelectionModel().getSelectedIndex();
         tableUsers.getItems().remove(selectedIndex);
     }
 
-    public void onShowDgr(ActionEvent actionEvent) {
+    public void onChangeDgr() {
 
-        for (int i = 0; i < 5; i++) {
-            series.getData().add(new XYChart.Data<>(personData.get(i).getName().toString(), i));
+        for (int i = 0; i < personData.size(); i++) {
+            series.getData().add(new XYChart.Data<>(personData.get(i).getName().toString(), personData.get(i).getMoney().intValue()));
         }
 
         barUsers.getData().add(series);

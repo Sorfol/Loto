@@ -79,22 +79,11 @@ public class MainApp extends Application {
     }
 
     public void showPersonOverview() {
-        try {
-            // Загружаем сведения об адресатах.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("hello-view.fxml"));
-            AnchorPane personOverview = (AnchorPane) loader.load();
 
-            // Помещаем сведения об адресатах в центр корневого макета.
-            //hello-view.setCenter(personOverview);
+        // Загружаем сведения об адресатах.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainApp.class.getResource("hello-view.fxml"));
 
-            // Даём контроллеру доступ к главному приложению.
-            HelloController controller = loader.getController();
-            controller.setMainApp(this);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-    // ... ОСТАЛЬНАЯ ЧАСТЬ КЛАССА ...
+
 }

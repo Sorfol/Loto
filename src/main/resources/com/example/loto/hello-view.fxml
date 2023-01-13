@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Label?>
-<VBox prefHeight="400.0" prefWidth="640.0" fx:controller="com.example.loto.HelloController" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" fx:controller="com.example.loto.HelloController" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -48,12 +48,13 @@
 
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
+
                 <BarChart fx:id="barUsers" layoutY="4.0" prefHeight="400.0" prefWidth="438.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM" fx:id="xAxis" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis lowerBound="-4000.0" prefHeight="230.0" prefWidth="28.0" side="LEFT" upperBound="4000.0" />
+                        <NumberAxis fx:id="yAxis" lowerBound="-4000.0" prefHeight="230.0" prefWidth="28.0" side="LEFT" upperBound="4000.0" />
                     </yAxis>
                 </BarChart>
 
@@ -68,9 +69,10 @@
                 <Label fx:id="welcomeText"/>
 
                 <Button layoutX="438.0" layoutY="336.0" mnemonicParsing="false" text="Добавить" onAction="#onHelloButtonClick"/>
-                <Button layoutX="513.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Деньги" onAction="#onAddMoney"/>
-                <Button layoutX="588.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Удалить" onAction="#onDelete"/>
-                <Button layoutX="588.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Диаграмма" onAction="#onShowDgr"/>
+                <Button layoutX="513.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Удалить" onAction="#onDelete"/>
+                <Button layoutX="438.0" layoutY="430.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Диаграмма" onAction="#onChangeDgr"/>
+                <Button layoutX="438.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="+" onAction="#onAddMoney"/>
+                <Button layoutX="513.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="-" onAction="#onPickUpMoney"/>
             </children>
         </AnchorPane>
 
