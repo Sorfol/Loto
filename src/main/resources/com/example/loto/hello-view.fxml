@@ -51,10 +51,10 @@
 
                 <BarChart fx:id="barUsers" layoutY="4.0" prefHeight="400.0" prefWidth="438.0">
                     <xAxis>
-                        <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                        <CategoryAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis fx:id="yAxis" lowerBound="-4000.0" prefHeight="230.0" prefWidth="28.0" side="LEFT" upperBound="4000.0" />
+                        <NumberAxis prefHeight="230.0" prefWidth="28.0" side="LEFT" />
                     </yAxis>
                 </BarChart>
 

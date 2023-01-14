@@ -34,16 +34,12 @@ public class HelloController {
     private TableColumn<User, Number> moneytab;
     @FXML
     private BarChart<String, Integer> barUsers;
-    @FXML
-    private CategoryAxis xAxis;
-    @FXML
-    private NumberAxis yAxis;
 
-    private XYChart.Series<String, Integer> series = new XYChart.Series<>();
+    private XYChart.Series<String, Integer> series;
 
     private int counter = 0;
-    private ObservableList<User> personData = FXCollections.observableArrayList();
-    private ObservableList<String> personNames = FXCollections.observableArrayList();
+    private final ObservableList<User> personData = FXCollections.observableArrayList();
+    private final ObservableList<String> personNames = FXCollections.observableArrayList();
     @FXML
     private void initialize() {
         // Инициализация таблицы адресатов с двумя столбцами.
@@ -52,25 +48,18 @@ public class HelloController {
 
         tableUsers.setItems(personData);
 
-        ///
-
+        series = new XYChart.Series<>();
         // Кусок с сайта https://betacode.net/11107/javafx-barchart
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Programming Language");
 
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Percent");
+        //NumberAxis yAxis = new NumberAxis();
+        //yAxis.setLabel("Percent");
 
-        BarChart<String, Number> barUsers = new BarChart<String, Number>(xAxis, yAxis);
-
-        barUsers.setTitle("Some Programming Languages");
-
-
-        personNames.addAll(Arrays.asList(personData.getClass().getName()));
+        personNames.addAll(Arrays.asList(personData.getClass().getCanonicalName()));
 
         // Назначаем имена месяцев категориями для горизонтальной оси.
         xAxis.setCategories(personNames);
-
 
 
     }
@@ -101,9 +90,12 @@ public class HelloController {
                 break;
         }
 
-        counter++;
+        String test = personData.get(counter).getName().getValue();
+        series.getData().add(new XYChart.Data<>(test, personData.get(counter).getMoney().intValue()));
 
-        onChangeDgr();
+        barUsers.getData().add(series);
+
+        counter++;
     }
 
     @FXML
@@ -132,9 +124,10 @@ public class HelloController {
     public void onChangeDgr() {
 
         for (int i = 0; i < personData.size(); i++) {
-            series.getData().add(new XYChart.Data<>(personData.get(i).getName().toString(), personData.get(i).getMoney().intValue()));
+            series.getData().add(new XYChart.Data<>(personData.get(i).getName().getValue(), personData.get(i).getMoney().intValue()));
         }
 
         barUsers.getData().add(series);
     }
+
 }
