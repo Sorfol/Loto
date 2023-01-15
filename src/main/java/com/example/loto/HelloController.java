@@ -51,24 +51,17 @@ public class HelloController {
         series = new XYChart.Series<>();
         // Кусок с сайта https://betacode.net/11107/javafx-barchart
         CategoryAxis xAxis = new CategoryAxis();
+        CategoryAxis yAxis = new CategoryAxis();
         xAxis.setLabel("Programming Language");
-
-        //NumberAxis yAxis = new NumberAxis();
-        //yAxis.setLabel("Percent");
 
         personNames.addAll(Arrays.asList(personData.getClass().getCanonicalName()));
 
-        // Назначаем имена месяцев категориями для горизонтальной оси.
         xAxis.setCategories(personNames);
-
-
     }
 
-
-
     @FXML
-    private void onHelloButtonClick() {
-
+    private void onHelloButtonClick() throws InterruptedException {
+        onChangeDgr();
         switch (counter){
             case 0:
                 personData.add(new User("Ляля"));
@@ -90,10 +83,10 @@ public class HelloController {
                 break;
         }
 
-        String test = personData.get(counter).getName().getValue();
-        series.getData().add(new XYChart.Data<>(test, personData.get(counter).getMoney().intValue()));
+        String user = personData.get(counter).getName().getValue();
+        Integer money = personData.get(counter).getMoney().intValue();
 
-        barUsers.getData().add(series);
+        series.getData().add(new XYChart.Data<>(user, money));
 
         counter++;
     }
@@ -118,16 +111,29 @@ public class HelloController {
     @FXML
     private void onDelete() {
         int selectedIndex = tableUsers.getSelectionModel().getSelectedIndex();
+
         tableUsers.getItems().remove(selectedIndex);
+        personData.remove(selectedIndex);
+        series.getData().remove(selectedIndex);
+
     }
 
     public void onChangeDgr() {
 
-        for (int i = 0; i < personData.size(); i++) {
-            series.getData().add(new XYChart.Data<>(personData.get(i).getName().getValue(), personData.get(i).getMoney().intValue()));
+        for (User personDatum : personData) {
+            series.getData().add(new XYChart.Data<>(personDatum.getName().getValue(), personDatum.getMoney().intValue()));
         }
+        barUsers.getData();
+
+    }
+
+    public void onCreateDgr(){
+
+        for (User personDatum : personData) {
+            series.getData().add(new XYChart.Data<>(personDatum.getName().getValue(), personDatum.getMoney().intValue()));
+        }
+
 
         barUsers.getData().add(series);
     }
-
 }

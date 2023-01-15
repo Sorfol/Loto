@@ -46,12 +46,12 @@
         </MenuBar>
 
 
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+        <AnchorPane maxWidth="230.0" prefWidth="230.0" VBox.vgrow="ALWAYS">
             <children>
 
                 <BarChart fx:id="barUsers" layoutY="4.0" prefHeight="400.0" prefWidth="438.0">
                     <xAxis>
-                        <CategoryAxis side="BOTTOM" />
+                        <CategoryAxis side="BOTTOM" prefWidth="10.0" />
                     </xAxis>
                     <yAxis>
                         <NumberAxis prefHeight="230.0" prefWidth="28.0" side="LEFT" />
@@ -70,7 +70,7 @@
 
                 <Button layoutX="438.0" layoutY="336.0" mnemonicParsing="false" text="Добавить" onAction="#onHelloButtonClick"/>
                 <Button layoutX="513.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Удалить" onAction="#onDelete"/>
-                <Button layoutX="438.0" layoutY="430.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Диаграмма" onAction="#onChangeDgr"/>
+                <Button layoutX="438.0" layoutY="430.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Диаграмма" onAction="#onCreateDgr"/>
                 <Button layoutX="438.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="+" onAction="#onAddMoney"/>
                 <Button layoutX="513.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="-" onAction="#onPickUpMoney"/>
             </children>
