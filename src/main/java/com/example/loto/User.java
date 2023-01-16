@@ -43,6 +43,4 @@ public class User {
     public void setMoney(double money) {
         this.money.set(money);
     }
-
-
 }
