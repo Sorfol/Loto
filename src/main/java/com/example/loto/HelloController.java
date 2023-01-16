@@ -13,19 +13,20 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.text.DateFormatSymbols;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class HelloController {
+    public Button showDiagr;
+    public TextField curBet;
+    public TableColumn<User, Number> bettab;
     @FXML
     private TableView<User> tableUsers;
     @FXML
@@ -45,18 +46,22 @@ public class HelloController {
         // Инициализация таблицы адресатов с двумя столбцами.
         nametab.setCellValueFactory(cellData -> cellData.getValue().getName());
         moneytab.setCellValueFactory(cellData -> cellData.getValue().getMoney());
+        bettab.setCellValueFactory(cellData -> cellData.getValue().curBetProperty());
 
         tableUsers.setItems(personData);
 
         series = new XYChart.Series<>();
         // Кусок с сайта https://betacode.net/11107/javafx-barchart
         CategoryAxis xAxis = new CategoryAxis();
-        CategoryAxis yAxis = new CategoryAxis();
+
         xAxis.setLabel("Programming Language");
 
-        personNames.addAll(Arrays.asList(personData.getClass().getCanonicalName()));
+        personNames.add(personData.getClass().getCanonicalName());
 
         xAxis.setCategories(personNames);
+
+        curBet.setText("300");
+
     }
 
     @FXML
@@ -85,6 +90,7 @@ public class HelloController {
 
         String user = personData.get(counter).getName().getValue();
         Integer money = personData.get(counter).getMoney().intValue();
+        Integer curBet = personData.get(counter).curBetProperty().intValue();
 
         series.getData().add(new XYChart.Data<>(user, money));
 
@@ -114,16 +120,18 @@ public class HelloController {
 
         tableUsers.getItems().remove(selectedIndex);
         personData.remove(selectedIndex);
+        personNames.remove(selectedIndex);
         series.getData().remove(selectedIndex);
 
     }
 
     public void onChangeDgr() {
-
+        series.getData().clear();
         for (User personDatum : personData) {
             series.getData().add(new XYChart.Data<>(personDatum.getName().getValue(), personDatum.getMoney().intValue()));
         }
         barUsers.getData();
+
 
     }
 
@@ -133,7 +141,20 @@ public class HelloController {
             series.getData().add(new XYChart.Data<>(personDatum.getName().getValue(), personDatum.getMoney().intValue()));
         }
 
-
         barUsers.getData().add(series);
+        showDiagr.setDisable(true);
+    }
+
+    public void onInputBet() {
+
+        for (int i=0; i < tableUsers.getItems().size(); i++){
+
+            User curUser = tableUsers.getItems().get(i);
+            double value = Double.parseDouble(curBet.getText());
+            tableUsers.getItems().get(i).setMoney(curUser.getMoney().doubleValue() + value);
+        }
+
+        onChangeDgr();
+
     }
 }

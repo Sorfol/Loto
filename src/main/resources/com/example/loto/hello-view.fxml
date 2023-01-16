@@ -4,17 +4,18 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Label?>
-<VBox prefHeight="400.0" prefWidth="640.0" fx:controller="com.example.loto.HelloController" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="515.0" prefWidth="850.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.loto.HelloController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -46,12 +47,12 @@
         </MenuBar>
 
 
-        <AnchorPane maxWidth="230.0" prefWidth="230.0" VBox.vgrow="ALWAYS">
+        <AnchorPane maxWidth="854.0" prefHeight="490.0" prefWidth="854.0" VBox.vgrow="ALWAYS">
             <children>
 
-                <BarChart fx:id="barUsers" layoutY="4.0" prefHeight="400.0" prefWidth="438.0">
+                <BarChart fx:id="barUsers" animated="false" layoutY="4.0" prefHeight="400.0" prefWidth="438.0">
                     <xAxis>
-                        <CategoryAxis side="BOTTOM" prefWidth="10.0" />
+                        <CategoryAxis prefWidth="10.0" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                         <NumberAxis prefHeight="230.0" prefWidth="28.0" side="LEFT" />
@@ -59,20 +60,25 @@
                 </BarChart>
 
 
-                <TableView fx:id="tableUsers" editable="true" layoutX="440.0" layoutY="4.0" prefHeight="329.0" prefWidth="200.0">
+                <TableView fx:id="tableUsers" editable="true" layoutX="440.0" layoutY="4.0" prefHeight="329.0" prefWidth="280.0">
                     <columns>
-                        <TableColumn fx:id="nametab" id="Name" prefWidth="118.0" text="Имя" />
-                        <TableColumn fx:id="moneytab" id="Money" prefWidth="81.0" text="Бюджет" />
+                        <TableColumn id="Name" fx:id="nametab" prefWidth="118.0" text="Имя" />
+                        <TableColumn id="Money" fx:id="moneytab" prefWidth="80.0" text="Бюджет" />
+                        <TableColumn id="Bet" fx:id="bettab" prefWidth="80.0" text="Ставка" />
                     </columns>
                 </TableView>
 
-                <Label fx:id="welcomeText"/>
+                <Label fx:id="welcomeText" />
 
-                <Button layoutX="438.0" layoutY="336.0" mnemonicParsing="false" text="Добавить" onAction="#onHelloButtonClick"/>
-                <Button layoutX="513.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Удалить" onAction="#onDelete"/>
-                <Button layoutX="438.0" layoutY="430.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Диаграмма" onAction="#onCreateDgr"/>
-                <Button layoutX="438.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="+" onAction="#onAddMoney"/>
-                <Button layoutX="513.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="-" onAction="#onPickUpMoney"/>
+                <Button layoutX="438.0" layoutY="336.0" mnemonicParsing="false" onAction="#onHelloButtonClick" text="Добавить" />
+                <Button disable="true" layoutX="513.0" layoutY="336.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="25.0" prefWidth="69.0" text="Удалить" />
+                <Button fx:id="showDiagr" layoutX="438.0" layoutY="430.0" mnemonicParsing="false" onAction="#onCreateDgr" prefHeight="25.0" prefWidth="69.0" text="Диаграмма" />
+                <Button layoutX="438.0" layoutY="370.0" mnemonicParsing="false" onAction="#onAddMoney" prefHeight="25.0" prefWidth="69.0" text="+" />
+                <Button layoutX="513.0" layoutY="370.0" mnemonicParsing="false" onAction="#onPickUpMoney" prefHeight="25.0" prefWidth="69.0" text="-" />
+                <TextField layoutX="668.0" layoutY="34.0" fx:id="curBet"/>
+                <Label layoutX="668.0" layoutY="17.0" text="Текущая ставка"/>
+                <Button layoutX="668.0" layoutY="65.0" mnemonicParsing="false" text="Ввести" onAction="#onInputBet"/>
+                <Button layoutX="654.0" layoutY="179.0" mnemonicParsing="false" text="Победитель" />
             </children>
         </AnchorPane>
 
