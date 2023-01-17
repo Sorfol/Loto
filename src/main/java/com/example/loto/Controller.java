@@ -2,6 +2,7 @@ package com.example.loto;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -166,6 +167,7 @@ public class Controller {
             if (i != selectedIndex){
                 finFond = finFond + tableUsers.getItems().get(i).getCurBet();
                 tableUsers.getItems().get(i).setMoney(tableUsers.getItems().get(i).getMoney().doubleValue() - tableUsers.getItems().get(i).getCurBet());
+
             }
             tableUsers.getItems().get(i).setCurBet(0);
         }
@@ -174,8 +176,12 @@ public class Controller {
         onChangeDgr();
 
 
-
         // Тут вся фигня с историей
+
+
+    }
+
+    public void onClear() {
 
 
     }

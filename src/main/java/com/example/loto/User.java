@@ -3,15 +3,34 @@ package com.example.loto;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class User {
 
-    public StringProperty name;
-    public DoubleProperty money;
-    public DoubleProperty curBet;
+    private StringProperty name;
+    private DoubleProperty money;
+    private DoubleProperty curBet;
+    private ArrayList<Double> moneyLog;
     public StringProperty getName() {
         return name;
+    }
+
+    public StringProperty nameProperty() {
+        return name;
+    }
+
+    public DoubleProperty moneyProperty() {
+        return money;
+    }
+
+    public ArrayList<Double> getMoneyLog() {
+
+        return moneyLog;
+    }
+
+    public void setMoneyLog(ArrayList<Double> moneyLog) {
+        this.moneyLog = moneyLog;
     }
 
     public void setName(String name) {
