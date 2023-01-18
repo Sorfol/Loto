@@ -15,12 +15,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="515.0" prefWidth="850.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.loto.Controller">
+<VBox prefHeight="515.0" prefWidth="850.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.loto.MainController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
+                        <MenuItem mnemonicParsing="false" text="ShowLog" onAction="#onShowLog"/>
                         <MenuItem mnemonicParsing="false" text="Quit" />
                     </items>
                 </Menu>

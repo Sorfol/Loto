@@ -4,15 +4,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 
-public class Controller {
-    public Button showDiagr;
+public class MainController {
     public TextField curBet;
     public TableColumn<User, Number> bettab;
     @FXML
@@ -27,6 +34,8 @@ public class Controller {
     private XYChart.Series<String, Integer> series;
 
     private Boolean isDrgCreated = false;
+
+    private LogController logController;
 
     private int counter = 0;
     private final ObservableList<User> personData = FXCollections.observableArrayList();
@@ -51,6 +60,8 @@ public class Controller {
         nametab.setOnEditCommit(
                 (TableColumn.CellEditEvent<User, String> t) -> t.getTableView().getItems().get(
                         t.getTablePosition().getRow()).setName(t.getNewValue()));
+
+
 
     }
 
@@ -183,6 +194,33 @@ public class Controller {
 
     public void onClear() {
 
+
+    }
+
+    public void onShowLog() throws IOException {
+
+        /*
+        FXMLLoader fxmlLoader = new FXMLLoader(LotoApplication.class.getResource("showLog.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Stage stage = new Stage();
+        stage.setTitle("New Window");
+        stage.setScene(scene);
+        stage.show();
+
+        */
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("showLog.fxml"));
+
+        fxmlLoader.setController(logController);
+
+        Scene scene = new Scene(fxmlLoader.load(), 630, 400);
+        Stage stage = new Stage();
+        stage.setTitle("New Window");
+        stage.setScene(scene);
+        stage.show();
 
     }
 }
