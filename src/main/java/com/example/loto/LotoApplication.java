@@ -10,7 +10,7 @@ import java.io.IOException;
 public class LotoApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LotoApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LotoApplication.class.getResource("mainView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 950, 500);
         stage.setTitle("Пытаюсь сделать не всратое лото");
         stage.setScene(scene);

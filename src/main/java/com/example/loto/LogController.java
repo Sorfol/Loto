@@ -2,27 +2,25 @@ package com.example.loto;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class LogController {
-
-    public Label test;
-
-    public LogController(ObservableList<User> personData) {
-
-
-    }
+    public Label lableTest;
 
     @FXML
     private void initialize() {
 
+
     }
 
-    public void setMainApp(LotoApplication mainApp) {
-        // this.mainApp = mainApp;
+    public void setCurBer(String bet){
+        lableTest.setText(bet);
+    }
 
-        // pass the main app to the drawerContentController:
-        //LogController.setMainApp(mainApp);
+    public void onHelloButtonClick(ActionEvent actionEvent) {
+        lableTest.setText("Кнопка работает!");
+
     }
 }

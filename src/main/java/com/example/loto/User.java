@@ -2,12 +2,15 @@ package com.example.loto;
 
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class User {
 
+    public ObservableList<User> personData = FXCollections.observableArrayList();
     private StringProperty name;
     private DoubleProperty money;
     private DoubleProperty curBet;
@@ -29,8 +32,8 @@ public class User {
         return moneyLog;
     }
 
-    public void setMoneyLog(ArrayList<Double> moneyLog) {
-        this.moneyLog = moneyLog;
+    public void addCurGameToLog(Double gameResult) {
+        this.moneyLog.add(gameResult);
     }
 
     public void setName(String name) {

@@ -199,24 +199,13 @@ public class MainController {
 
     public void onShowLog() throws IOException {
 
-        /*
-        FXMLLoader fxmlLoader = new FXMLLoader(LotoApplication.class.getResource("showLog.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LotoApplication.class.getResource("LogView.fxml"));
+        Parent root = fxmlLoader.load();
 
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        Stage stage = new Stage();
-        stage.setTitle("New Window");
-        stage.setScene(scene);
-        stage.show();
+        LogController logController = fxmlLoader.getController();
+        logController.setCurBer(curBet.getText());
 
-        */
-
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("showLog.fxml"));
-
-        fxmlLoader.setController(logController);
-
-        Scene scene = new Scene(fxmlLoader.load(), 630, 400);
+        Scene scene = new Scene(root, 600, 400);
         Stage stage = new Stage();
         stage.setTitle("New Window");
         stage.setScene(scene);
