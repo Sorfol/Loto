@@ -176,7 +176,7 @@ public class MainController {
         for (int i=0; i < tableUsers.getItems().size(); i++){
 
             if (i != selectedIndex){
-                finFond = finFond + tableUsers.getItems().get(i).getCurBet();
+                finFond += tableUsers.getItems().get(i).getCurBet();
                 tableUsers.getItems().get(i).setMoney(tableUsers.getItems().get(i).getMoney().doubleValue() - tableUsers.getItems().get(i).getCurBet());
 
             }
@@ -199,6 +199,7 @@ public class MainController {
 
     public void onShowLog() throws IOException {
 
+        /*
         FXMLLoader fxmlLoader = new FXMLLoader(LotoApplication.class.getResource("LogView.fxml"));
         Parent root = fxmlLoader.load();
 
@@ -210,6 +211,11 @@ public class MainController {
         stage.setTitle("New Window");
         stage.setScene(scene);
         stage.show();
+        */
 
+        LogController logController = new LogController();
+
+        ActionEvent actionEvent = new ActionEvent();
+        logController.onHelloButtonClick(actionEvent);
     }
 }
