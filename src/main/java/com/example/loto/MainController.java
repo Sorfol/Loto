@@ -22,6 +22,7 @@ import java.io.IOException;
 public class MainController {
     public TextField curBet;
     public TableColumn<User, Number> bettab;
+    public Button justButton;
     @FXML
     private TableView<User> tableUsers;
     @FXML
@@ -35,9 +36,9 @@ public class MainController {
 
     private Boolean isDrgCreated = false;
 
-    private LogController logController;
+    private int cntGames;
 
-    private int counter = 0;
+    private int cntUsers;
     private final ObservableList<User> personData = FXCollections.observableArrayList();
     private final ObservableList<String> personNames = FXCollections.observableArrayList();
     @FXML
@@ -70,8 +71,8 @@ public class MainController {
         onChangeDgr();
 
         // Тут вся фигня с пользователями
-        if (counter < 8) {
-            switch (counter) {
+        if (cntUsers < 8) {
+            switch (cntUsers) {
                 case 0:
                     personData.add(new User("Ляля"));
                     break;
@@ -101,13 +102,13 @@ public class MainController {
                     break;
 
             }
-            String user = personData.get(counter).getName().getValue();
-            Integer money = personData.get(counter).getMoney().intValue();
+            String user = personData.get(cntUsers).getName().getValue();
+            Integer money = personData.get(cntUsers).getMoney().intValue();
 
             series.getData().add(new XYChart.Data<>(user, money));
         }
 
-        counter++;
+        cntUsers++;
     }
 
     @FXML
@@ -186,7 +187,7 @@ public class MainController {
         winUser.setMoney(winUser.getMoney().doubleValue() + finFond);
         onChangeDgr();
 
-
+        cntGames++;
         // Тут вся фигня с историей
 
 
@@ -197,25 +198,25 @@ public class MainController {
 
     }
 
-    public void onShowLog() throws IOException {
+    public void onShowLog(ActionEvent event) throws IOException {
 
-        /*
+
         FXMLLoader fxmlLoader = new FXMLLoader(LotoApplication.class.getResource("LogView.fxml"));
         Parent root = fxmlLoader.load();
-
-        LogController logController = fxmlLoader.getController();
-        logController.setCurBer(curBet.getText());
 
         Scene scene = new Scene(root, 600, 400);
         Stage stage = new Stage();
         stage.setTitle("New Window");
         stage.setScene(scene);
         stage.show();
-        */
 
-        LogController logController = new LogController();
+        LogController logController = fxmlLoader.getController();
+        logController.setCurBer(curBet.getText());
 
-        ActionEvent actionEvent = new ActionEvent();
-        logController.onHelloButtonClick(actionEvent);
+
+        //ActionEvent actionEvent = new ActionEvent();
+        //logController.onHelloButtonClick(actionEvent);
+
+
     }
 }

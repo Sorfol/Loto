@@ -55,7 +55,7 @@
             <children>
 
                 <Label layoutX="148.0" layoutY="73.0" prefHeight="17.0" prefWidth="103.0" text="ваы" fx:id="lableTest"/>
-                <Button layoutX="148.0" layoutY="100.0" mnemonicParsing="false" onAction="#onHelloButtonClick" text="Добавить" />
+                <Button layoutX="148.0" layoutY="100.0" mnemonicParsing="false" onAction="#onHelloButtonClick" text="Добавить" fx:id="justButton"/>
             </children>
         </AnchorPane>
     </children>
