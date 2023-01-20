@@ -14,7 +14,7 @@ public class User {
     private StringProperty name;
     private DoubleProperty money;
     private DoubleProperty curBet;
-    private ArrayList<Double> moneyLog;
+    private ArrayList<Double> moneyLog = new ArrayList<>();
     public StringProperty getName() {
         return name;
     }
@@ -27,9 +27,12 @@ public class User {
         return money;
     }
 
-    public ArrayList<Double> getMoneyLog() {
+    public Double getMoneyLogBet(int pointer) {
+        return moneyLog.get(pointer);
+    }
 
-        return moneyLog;
+    public void addMoneyLogBet (Double curBet, int pointer){
+        moneyLog.add(pointer, curBet);
     }
 
     public void addCurGameToLog(Double gameResult) {

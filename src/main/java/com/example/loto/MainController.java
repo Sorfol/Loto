@@ -34,9 +34,10 @@ public class MainController {
 
     private XYChart.Series<String, Integer> series;
 
+    private int gameNumber = 0;
+
     private Boolean isDrgCreated = false;
 
-    private int cntGames;
 
     private int cntUsers;
     private final ObservableList<User> personData = FXCollections.observableArrayList();
@@ -175,22 +176,23 @@ public class MainController {
         User winUser = tableUsers.getItems().get(selectedIndex);
         double finFond = 0.0;
         for (int i=0; i < tableUsers.getItems().size(); i++){
+            User curUser = tableUsers.getItems().get(i);
 
             if (i != selectedIndex){
-                finFond += tableUsers.getItems().get(i).getCurBet();
-                tableUsers.getItems().get(i).setMoney(tableUsers.getItems().get(i).getMoney().doubleValue() - tableUsers.getItems().get(i).getCurBet());
+                finFond += curUser.getCurBet();
+                curUser.setMoney(curUser.getMoney().doubleValue()
+                        - curUser.getCurBet());
 
+                curUser.addMoneyLogBet(-curUser.getCurBet(), gameNumber);
             }
             tableUsers.getItems().get(i).setCurBet(0);
         }
 
+        winUser.addMoneyLogBet(finFond, gameNumber);
         winUser.setMoney(winUser.getMoney().doubleValue() + finFond);
         onChangeDgr();
 
-        cntGames++;
-        // Тут вся фигня с историей
-
-
+        gameNumber++;
     }
 
     public void onClear() {
@@ -206,12 +208,12 @@ public class MainController {
 
         Scene scene = new Scene(root, 600, 400);
         Stage stage = new Stage();
-        stage.setTitle("New Window");
+        stage.setTitle("Лог игр");
         stage.setScene(scene);
         stage.show();
 
         LogController logController = fxmlLoader.getController();
-        logController.setCurBer(curBet.getText());
+        logController.setGriedParam(personData, gameNumber);
 
 
         //ActionEvent actionEvent = new ActionEvent();

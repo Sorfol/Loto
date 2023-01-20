@@ -3,6 +3,7 @@ package com.example.loto;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -14,6 +15,13 @@ import java.util.regex.Pattern;
 
 public class ShowLog {
 
+    public ObservableList<User> personData;
+
+    public void setGameCount(int gameCount) {
+        this.gameCount = gameCount;
+    }
+
+    public int gameCount;
     private final Pattern intPattern = Pattern.compile("-?[0-9]+");
     // this could probably be improved: demo purposes only
     private final Pattern doublePattern = Pattern.compile("-?(([0-9]+)|([0-9]*\\.[0-9]+))");
@@ -49,13 +57,13 @@ public class ShowLog {
             if (columnIndex < row.length) {
                 return Integer.valueOf(row[columnIndex]);
             } else {
-                return new Integer(0);
+                return 0;
             }
         } else if (type == Double.class) {
             if (columnIndex < row.length) {
                 return Double.valueOf(row[columnIndex]);
             } else {
-                return new Double(0.0);
+                return 0.0;
             }
         } else {
             if (columnIndex < row.length) {
@@ -67,7 +75,10 @@ public class ShowLog {
     }
 
     private TableColumn<List<Object>, ?> createColumn(Class<?> type, int index) {
-        String text = "Column "+(index+1);
+
+        String text = personData.get(index).getName().getValue();
+        //String text = "Column "+(index+1);
+
         if (type==Integer.class) {
             TableColumn<List<Object>, Number> col = new TableColumn<>(text);
             col.setCellValueFactory(data -> new SimpleIntegerProperty((Integer)data.getValue().get(index)));
@@ -123,13 +134,20 @@ public class ShowLog {
 
     private String[][] generateTestData() {
 
-        // in real life, read from CSV file/database, etc...
+        String[][] logGames = new String[gameCount][personData.size()];
 
-        return new String[][] {
-                {"A1", "B2", "10", "-5.3"},
-                {"A2", "B1", "15", "12.6"},
-                {"A3", "B3", "5", "10.2"}
-        };
+        for (int i=0; i<gameCount; i++){
+            for (int j = 0; j<personData.size(); j++){
+                logGames[i][j] = personData.get(j).getMoneyLogBet(i).toString();
+            }
+        }
+
+        return logGames;
+
+    }
+
+    public void setPersonData(ObservableList<User> pData){
+        personData = pData;
     }
 
 }

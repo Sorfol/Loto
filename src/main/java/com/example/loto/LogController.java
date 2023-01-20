@@ -18,11 +18,12 @@ public class LogController {
 
     }
 
-    public void setCurBer(String bet){
+    public void setGriedParam(ObservableList<User> pData, int gameCount){
 
         ShowLog sl = new ShowLog();
         Stage stage = (Stage) justButton.getScene().getWindow();
-
+        sl.setPersonData(pData);
+        sl.setGameCount(gameCount);
         sl.start(stage);
 
     }
